@@ -1,0 +1,283 @@
+{
+  "translations": {
+    "GatePass – Présentation": "GatePass – Overview",
+    "Plan de la présentation": "Presentation roadmap",
+    "Le projet en quelques chiffres": "The project in numbers",
+    "Comment ça marche – 5 étapes": "How it works – 5 steps",
+    "Le matériel utilisé": "Hardware components",
+    "ESP32 DevKit – pinout": "ESP32 DevKit – pinout",
+    "Clavier 4×4 – câblage": "4×4 keypad – wiring",
+    "Servomoteur – branchement": "Servo motor – connection",
+    "Le câblage de l'ESP32": "ESP32 wiring",
+    "Architecture logicielle": "Software architecture",
+    "Le servomoteur : verrouillage": "Servo motor: locking",
+    "Retour fait à l'utilisateur": "User feedback",
+    "Les limites du prototype": "Prototype limitations",
+    "Les améliorations prévues": "Planned improvements",
+    "Merci – Questions ?": "Thank you – Questions?",
+    "Une serrure intelligente à code, pilotée par un ESP32 et un servomoteur": "A smart code-based lock controlled by an ESP32 and a servo motor",
+    "Projet Microcontrôleurs · M1 OCC ENI 2026": "Microcontrollers Project · M1 OCC ENI 2026",
+    "Notre présentation": "Our presentation",
+    "en trois parties": "in three parts",
+    "Le projet": "The project",
+    "Objectif, principe de fonctionnement": "Goals and operating principle",
+    "La technique": "The technical side",
+    "Matériel, câblage, logiciel, servomoteur": "Hardware, wiring, software, servo motor",
+    "Bilan": "Conclusion",
+    "Retour utilisateur, limites, perspectives": "User feedback, limitations, future improvements",
+    "Le projet en chiffres": "The project in numbers",
+    "chiffres pour le code": "digits in the access code",
+    "Mot de passe par défaut : 1111": "Default password: 1111",
+    "porte déverrouillée": "door unlocked",
+    "Puis verrouillage automatique": "Then it locks automatically",
+    "servomoteur": "servo motor",
+    "Il retire et remet le pêne": "It moves the door bolt in and out",
+    "Objectif : saisir un code sur un clavier, et si le code est bon, la porte s'ouvre toute seule.": "Goal: enter a code on the keypad; if it is correct, the door opens automatically.",
+    "Comment ça marche": "How it works",
+    "Saisie": "Input",
+    "L'utilisateur tape 4 chiffres": "The user enters 4 digits",
+    "Vérification": "Verification",
+    "L'ESP32 compare au code": "The ESP32 checks the code",
+    "Déverrouillage": "Unlocking",
+    "Le servo retire le pêne": "The servo retracts the bolt",
+    "Porte ouverte": "Door open",
+    "Pendant 3 secondes": "For 3 seconds",
+    "Verrouillage": "Locking",
+    "Le servo remet le pêne": "The servo extends the bolt",
+    "Touche * : efface la saisie en cours (double bip)": "* key: clears the current entry (two beeps)",
+    "Le cerveau (ESP-WROOM-32)": "The brain (ESP-WROOM-32)",
+    "Membrane, 16 touches": "Membrane keypad, 16 keys",
+    "Module I²C, adresse 0x27": "I²C module, address 0x27",
+    "Rotation continue, 5 V (SG90)": "Continuous rotation, 5 V (SG90)",
+    "Retour sonore HIGH/LOW": "HIGH/LOW audio feedback",
+    "USB 5 V ou externe 5 V": "USB 5 V or external 5 V supply",
+    "Aucun capteur. Seul périphérique d'entrée : le clavier.": "No sensors. The keypad is the only input device.",
+    "Pinout de référence": "Reference pinout",
+    "Membrane · 8 broches (lignes + colonnes)": "Membrane · 8 pins (rows + columns)",
+    "Rotation continue · Rouge +5V · Marron GND · Orange signal": "Continuous rotation · Red +5V · Brown GND · Orange signal",
+    "Le câblage ESP32": "ESP32 wiring",
+    "Composant": "Component",
+    "Broches": "Pins",
+    "Clavier – lignes": "Keypad – rows",
+    "Clavier – colonnes": "Keypad – columns",
+    "Attention GPIO 12": "GPIO 12 warning",
+    "— broche de strapping. Si le servo est branché au démarrage ou pendant le flash, l'ESP32 peut refuser de démarrer.": "— a strapping pin. If the servo is connected during startup or flashing, the ESP32 may fail to boot.",
+    "Couche application": "Application layer",
+    "Lecture clavier, saisie, affichage LCD, buzzer, vérification du code": "Keypad scanning, input handling, LCD display, buzzer, and code verification",
+    "Couche actionneur": "Actuator layer",
+    "Technologies": "Technologies",
+    "C++ + framework Arduino": "C++ + Arduino framework",
+    "Keypad · ESP32Servo · LiquidCrystal_I2C": "Keypad · ESP32Servo · LiquidCrystal_I2C",
+    "Comment il verrouille": "How it locks",
+    "Arrêt": "Stop",
+    "Point neutre": "Neutral position",
+    "Rotation 300 ms": "300 ms rotation",
+    "Servo à rotation continue : durée = mouvement": "Continuous-rotation servo: duration controls movement",
+    "writeMicroseconds() règle sens et vitesse": "writeMicroseconds() controls direction and speed",
+    "Verrouillage temporel (pas de capteur de position)": "Timed locking (no position sensor)",
+    "Retour utilisateur": "User feedback",
+    "Écran LCD": "LCD display",
+    "Invite à saisir le code": "Prompts the user to enter the code",
+    "Caractères saisis en direct": "Displays entered characters in real time",
+    "Résultat : correct ou incorrect": "Result: correct or incorrect",
+    "Buzzer": "Buzzer",
+    "1 bip court → touche pressée": "1 short beep → key pressed",
+    "1 bip long → code correct": "1 long beep → correct code",
+    "3 bips courts → code incorrect": "3 short beeps → incorrect code",
+    "2 bips → saisie effacée": "2 beeps → entry cleared",
+    "Tous les événements aussi sur le port série (115200 bauds)": "All events are also sent to the serial port (115200 baud)",
+    "Les limites": "Limitations",
+    "Prototype pédagogique, pas un verrou certifié": "Educational prototype, not a certified lock",
+    "Sécurité": "Security",
+    "Code en dur, essais illimités, saisie affichée en clair": "Hardcoded code, unlimited attempts, input displayed in plain text",
+    "Fiabilité": "Reliability",
+    "Pas de capteur : état verrouillé supposé au démarrage": "No sensor: locked state is assumed at startup",
+    "Programme": "Program",
+    "Utilise delay() : des touches peuvent être manquées": "Uses delay(): key presses may be missed",
+    "Bibliothèque déclarée mais pas encore utilisée": "Library declared but not yet used",
+    "Améliorations prévues": "Planned improvements",
+    "Code en NVS, saisie masquée, temporisation après échecs": "Store code in NVS, mask input, add lockout after failed attempts",
+    "Capteur de fin de course ou contacteur à lame souple": "Limit switch or reed switch",
+    "millis() à la place de delay()": "Use millis() instead of delay()",
+    "Connectivité": "Connectivity",
+    "Contrôle à distance via Blynk, journal horodaté": "Remote control via Blynk, timestamped event log",
+    "Merci de votre attention": "Thank you for your attention",
+    "Un code saisi, un servo, une porte qui s'ouvre seule": "One code, one servo, one door that opens automatically",
+    "Prototype fonctionnel ESP32, extensible, licence MIT": "Working ESP32 prototype, extensible, MIT licensed",
+    "Base solide pour une vraie serrure connectée": "A solid foundation for a real smart lock",
+    "Questions ?": "Questions?",
+    "Code source disponible sur GitHub · Licence MIT": "Source code available on GitHub · MIT License",
+    "Follow": "Follow",
+    "Following": "Following",
+    "Fermer": "Close",
+    "commentaires": "comments",
+    "J'aime": "Like",
+    "Répondre": "Reply",
+    "Votre réponse…": "Your reply…",
+    "Ajouter un commentaire…": "Add a comment…",
+    "Envoyer": "Send",
+    "Clavier 4×4": "4×4 keypad",
+    "Servomoteur": "Servo motor",
+    "Buzzer actif": "Active buzzer",
+    "Alimentation": "Power supply",
+    "Le servomoteur": "The servo motor",
+    "PlatformIO (carte esp32dev)": "PlatformIO (esp32dev board)",
+    "GPIO 12 warning": "GPIO 12 warning"
+  },
+  "github": "https://github.com/hatixntsoa/gatepass",
+  "githubLabel": "github.com/hatixntsoa/gatepass",
+  "locale": {
+    "en": {
+      "follow": "Follow",
+      "following": "Following",
+      "close": "Close",
+      "comments": "comments",
+      "like": "Like",
+      "reply": "Reply",
+      "yourReply": "Your reply…",
+      "addComment": "Add a comment…",
+      "send": "Send",
+      "thanks": "Thanks for watching!",
+      "thanksLine": "Built with curiosity, teamwork, and a passion for technology.",
+      "me": "you",
+      "linkCopied": "Link Copied",
+      "copyLink": "Copy this link: "
+    },
+    "fr": {
+      "follow": "Suivre",
+      "following": "Abonné",
+      "close": "Fermer",
+      "comments": "commentaires",
+      "like": "J’aime",
+      "reply": "Répondre",
+      "yourReply": "Votre réponse…",
+      "addComment": "Ajouter un commentaire…",
+      "send": "Envoyer",
+      "thanks": "Merci d’avoir regardé !",
+      "thanksLine": "Réalisé avec curiosité, esprit d’équipe et passion pour la technologie.",
+      "me": "moi",
+      "linkCopied": "Lien Copié",
+      "copyLink": "Copiez ce lien : "
+    }
+  },
+  "commentTexts": {
+    "en": [
+      "Great build! The ESP32 and servo make a clean, practical demo.",
+      "Love how clearly the hardware and wiring are explained.",
+      "A smart-lock prototype with plenty of room to grow 🚀",
+      "The step-by-step breakdown makes the logic easy to follow.",
+      "Nice work, Group 11! Thanks for sharing the details.",
+      "The GPIO 12 warning is especially useful. Great catch!",
+      "Simple concept, thoughtful implementation. Well done!",
+      "Would love to see the Wi-Fi and mobile-app version next 👀",
+      "The project is a great example of embedded systems in action.",
+      "Clean presentation and a useful educational prototype 🔐"
+    ],
+    "fr": [
+      "Très belle réalisation ! L'ESP32 et le servo forment une démo efficace.",
+      "J'aime la clarté des explications sur le matériel et le câblage.",
+      "Un prototype de serrure intelligente avec beaucoup de potentiel 🚀",
+      "Les étapes rendent le fonctionnement facile à comprendre.",
+      "Bravo au Groupe 11 et merci pour le partage !",
+      "La remarque sur GPIO 12 est particulièrement utile.",
+      "Un concept simple et une réalisation bien pensée. Bravo !",
+      "Hâte de découvrir la version Wi-Fi et l'application mobile 👀",
+      "Un bel exemple pratique de systèmes embarqués.",
+      "Présentation claire et prototype pédagogique très intéressant 🔐"
+    ],
+    "thanks": {
+      "en": [
+        "Thank you for watching and supporting our project! 🙌",
+        "We appreciate your time, feedback, and encouragement.",
+        "Built with ❤️ by Group 11 · M1 OCC ENI 2026."
+      ],
+      "fr": [
+        "Merci d'avoir suivi et soutenu notre projet ! 🙌",
+        "Nous apprécions votre temps, vos retours et vos encouragements.",
+        "Réalisé avec ❤️ par le Groupe 11 · M1 OCC ENI 2026."
+      ]
+    }
+  },
+  "slides": [
+    {
+      "caption": "GatePass – Présentation",
+      "fr": "\n<img alt=\"ENI\" class=\"logo-lg\" src=\"assets/eni.png\"/>\n<h1 class=\"title-main\">GatePass</h1>\n<p class=\"subtitle\">Une serrure intelligente à code, pilotée par un ESP32 et un servomoteur</p>\n<div class=\"badge\">Projet Microcontrôleurs · M1 OCC ENI 2026</div>\n<div class=\"authors\">\n<p>HALIOTIS NTSOA Randriambololona · 2936</p>\n<p>FETISON Mioralalaina Câline · 4610</p>\n<p>RAFIDIMANANTSOA Rova Nandrianina · 4634</p>\n</div>\n",
+      "en": "\n<img alt=\"ENI\" class=\"logo-lg\" src=\"assets/eni.png\"/>\n<h1 class=\"title-main\">GatePass</h1>\n<p class=\"subtitle\">A smart code-based lock controlled by an ESP32 and a servo motor</p>\n<div class=\"badge\">Microcontrollers Project · M1 OCC ENI 2026</div>\n<div class=\"authors\">\n<p>HALIOTIS NTSOA Randriambololona · 2936</p>\n<p>FETISON Mioralalaina Câline · 4610</p>\n<p>RAFIDIMANANTSOA Rova Nandrianina · 4634</p>\n</div>\n"
+    },
+    {
+      "caption": "Plan de la présentation",
+      "fr": "\n<h2 class=\"yellow\">Notre présentation</h2>\n<p class=\"muted center\">en trois parties</p>\n<div class=\"cards\">\n<div class=\"card row\">\n<div class=\"num\">1</div>\n<div>\n<h3>Le projet</h3>\n<p>Objectif, principe de fonctionnement</p>\n<span class=\"speaker\">[Câline]</span>\n</div>\n</div>\n<div class=\"card row\">\n<div class=\"num\">2</div>\n<div>\n<h3>La technique</h3>\n<p>Matériel, câblage, logiciel, servomoteur</p>\n<span class=\"speaker\">[Ntsoa]</span>\n</div>\n</div>\n<div class=\"card row\">\n<div class=\"num\">3</div>\n<div>\n<h3>Bilan</h3>\n<p>Retour utilisateur, limites, perspectives</p>\n<span class=\"speaker\">[Nandrianina]</span>\n</div>\n</div>\n</div>\n",
+      "en": "\n<h2 class=\"yellow\">Our presentation</h2>\n<p class=\"muted center\">in three parts</p>\n<div class=\"cards\">\n<div class=\"card row\">\n<div class=\"num\">1</div>\n<div>\n<h3>The project</h3>\n<p>Goals and operating principle</p>\n<span class=\"speaker\">[Câline]</span>\n</div>\n</div>\n<div class=\"card row\">\n<div class=\"num\">2</div>\n<div>\n<h3>The technical side</h3>\n<p>Hardware, wiring, software, servo motor</p>\n<span class=\"speaker\">[Ntsoa]</span>\n</div>\n</div>\n<div class=\"card row\">\n<div class=\"num\">3</div>\n<div>\n<h3>Conclusion</h3>\n<p>User feedback, limitations, future improvements</p>\n<span class=\"speaker\">[Nandrianina]</span>\n</div>\n</div>\n</div>\n"
+    },
+    {
+      "caption": "Le projet en quelques chiffres",
+      "fr": "\n<h2 class=\"yellow\">Le projet en chiffres</h2>\n<div class=\"cards\">\n<div class=\"card center\">\n<div class=\"big-num\">4</div>\n<div class=\"label\">chiffres pour le code</div>\n<div class=\"sub\">Mot de passe par défaut : 1111</div>\n</div>\n<div class=\"card center\">\n<div class=\"big-num\">3 s</div>\n<div class=\"label\">porte déverrouillée</div>\n<div class=\"sub\">Puis verrouillage automatique</div>\n</div>\n<div class=\"card center\">\n<div class=\"big-num\">1</div>\n<div class=\"label\">servomoteur</div>\n<div class=\"sub\">Il retire et remet le pêne</div>\n</div>\n</div>\n<p class=\"note\">Objectif : saisir un code sur un clavier, et si le code est bon, la porte s'ouvre toute seule.</p>\n",
+      "en": "\n<h2 class=\"yellow\">The project in numbers</h2>\n<div class=\"cards\">\n<div class=\"card center\">\n<div class=\"big-num\">4</div>\n<div class=\"label\">digits in the access code</div>\n<div class=\"sub\">Default password: 1111</div>\n</div>\n<div class=\"card center\">\n<div class=\"big-num\">3 s</div>\n<div class=\"label\">door unlocked</div>\n<div class=\"sub\">Then it locks automatically</div>\n</div>\n<div class=\"card center\">\n<div class=\"big-num\">1</div>\n<div class=\"label\">servo motor</div>\n<div class=\"sub\">It moves the door bolt in and out</div>\n</div>\n</div>\n<p class=\"note\">Goal: enter a code on the keypad; if it is correct, the door opens automatically.</p>\n"
+    },
+    {
+      "caption": "Comment ça marche – 5 étapes",
+      "fr": "\n<h2 class=\"yellow\">Comment ça marche</h2>\n<div class=\"steps\">\n<div class=\"step\">\n<div class=\"num sm\">1</div>\n<div>\n<strong>Saisie</strong>\n<span>L'utilisateur tape 4 chiffres</span>\n</div>\n</div>\n<div class=\"step\">\n<div class=\"num sm\">2</div>\n<div>\n<strong>Vérification</strong>\n<span>L'ESP32 compare au code</span>\n</div>\n</div>\n<div class=\"step\">\n<div class=\"num sm\">3</div>\n<div>\n<strong>Déverrouillage</strong>\n<span>Le servo retire le pêne</span>\n</div>\n</div>\n<div class=\"step\">\n<div class=\"num sm\">4</div>\n<div>\n<strong>Porte ouverte</strong>\n<span>Pendant 3 secondes</span>\n</div>\n</div>\n<div class=\"step\">\n<div class=\"num sm\">5</div>\n<div>\n<strong>Verrouillage</strong>\n<span>Le servo remet le pêne</span>\n</div>\n</div>\n</div>\n<p class=\"highlight\">Touche * : efface la saisie en cours (double bip)</p>\n",
+      "en": "\n<h2 class=\"yellow\">How it works</h2>\n<div class=\"steps\">\n<div class=\"step\">\n<div class=\"num sm\">1</div>\n<div>\n<strong>Input</strong>\n<span>The user enters 4 digits</span>\n</div>\n</div>\n<div class=\"step\">\n<div class=\"num sm\">2</div>\n<div>\n<strong>Verification</strong>\n<span>The ESP32 checks the code</span>\n</div>\n</div>\n<div class=\"step\">\n<div class=\"num sm\">3</div>\n<div>\n<strong>Unlocking</strong>\n<span>The servo retracts the bolt</span>\n</div>\n</div>\n<div class=\"step\">\n<div class=\"num sm\">4</div>\n<div>\n<strong>Door open</strong>\n<span>For 3 seconds</span>\n</div>\n</div>\n<div class=\"step\">\n<div class=\"num sm\">5</div>\n<div>\n<strong>Locking</strong>\n<span>The servo extends the bolt</span>\n</div>\n</div>\n</div>\n<p class=\"highlight\">* key: clears the current entry (two beeps)</p>\n"
+    },
+    {
+      "caption": "Le matériel utilisé",
+      "fr": "\n<h2 class=\"yellow\">Le matériel utilisé</h2>\n<div class=\"grid-2\">\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"cpu\"></i>\n<strong>ESP32 DevKit</strong>\n<span>Le cerveau (ESP-WROOM-32)</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"keyboard\"></i>\n<strong>Clavier 4×4</strong>\n<span>Membrane, 16 touches</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"monitor\"></i>\n<strong>LCD 16×2</strong>\n<span>Module I²C, adresse 0x27</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"rotate-cw\"></i>\n<strong>Servomoteur</strong>\n<span>Rotation continue, 5 V (SG90)</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"volume-2\"></i>\n<strong>Buzzer actif</strong>\n<span>Retour sonore HIGH/LOW</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"zap\"></i>\n<strong>Alimentation</strong>\n<span>USB 5 V ou externe 5 V</span>\n</div>\n</div>\n<p class=\"muted center small\">Aucun capteur. Seul périphérique d'entrée : le clavier.</p>\n",
+      "en": "\n<h2 class=\"yellow\">Hardware components</h2>\n<div class=\"grid-2\">\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"cpu\"></i>\n<strong>ESP32 DevKit</strong>\n<span>The brain (ESP-WROOM-32)</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"keyboard\"></i>\n<strong>Clavier 4×4</strong>\n<span>Membrane keypad, 16 keys</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"monitor\"></i>\n<strong>LCD 16×2</strong>\n<span>I²C module, address 0x27</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"rotate-cw\"></i>\n<strong>Servomoteur</strong>\n<span>Continuous rotation, 5 V (SG90)</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"volume-2\"></i>\n<strong>Buzzer actif</strong>\n<span>HIGH/LOW audio feedback</span>\n</div>\n<div class=\"card center compact\">\n<i class=\"icon\" data-lucide=\"zap\"></i>\n<strong>Alimentation</strong>\n<span>USB 5 V or external 5 V supply</span>\n</div>\n</div>\n<p class=\"muted center small\">No sensors. The keypad is the only input device.</p>\n"
+    },
+    {
+      "caption": "ESP32 DevKit – pinout",
+      "fr": "\n<h2 class=\"yellow\">ESP32 DevKit</h2>\n<p class=\"muted center small\">Pinout de référence</p>\n<div class=\"photo-frame\">\n<img alt=\"ESP32 DevKit pinout\" class=\"photo\" src=\"assets/esp32.png\"/>\n</div>\n",
+      "en": "\n<h2 class=\"yellow\">ESP32 DevKit</h2>\n<p class=\"muted center small\">Reference pinout</p>\n<div class=\"photo-frame\">\n<img alt=\"ESP32 DevKit pinout\" class=\"photo\" src=\"assets/esp32.png\"/>\n</div>\n"
+    },
+    {
+      "caption": "Clavier 4×4 – câblage",
+      "fr": "\n<h2 class=\"yellow\">Clavier 4×4</h2>\n<p class=\"muted center small\">Membrane · 8 broches (lignes + colonnes)</p>\n<div class=\"photo-frame\">\n<img alt=\"Clavier 4x4\" class=\"photo\" src=\"assets/keypad.png\"/>\n</div>\n",
+      "en": "\n<h2 class=\"yellow\">Clavier 4×4</h2>\n<p class=\"muted center small\">Membrane · 8 pins (rows + columns)</p>\n<div class=\"photo-frame\">\n<img alt=\"Clavier 4x4\" class=\"photo\" src=\"assets/keypad.png\"/>\n</div>\n"
+    },
+    {
+      "caption": "Servomoteur – branchement",
+      "fr": "\n<h2 class=\"yellow\">Servomoteur</h2>\n<p class=\"muted center small\">Rotation continue · Rouge +5V · Marron GND · Orange signal</p>\n<div class=\"photo-frame\">\n<img alt=\"Servomoteur\" class=\"photo\" src=\"assets/servo.png\"/>\n</div>\n",
+      "en": "\n<h2 class=\"yellow\">Servomoteur</h2>\n<p class=\"muted center small\">Continuous rotation · Red +5V · Brown GND · Orange signal</p>\n<div class=\"photo-frame\">\n<img alt=\"Servomoteur\" class=\"photo\" src=\"assets/servo.png\"/>\n</div>\n"
+    },
+    {
+      "caption": "Le câblage de l'ESP32",
+      "fr": "\n<h2 class=\"yellow\">Le câblage ESP32</h2>\n<table class=\"table\">\n<thead>\n<tr>\n<th>Composant</th>\n<th>Broches</th>\n</tr>\n</thead>\n<tbody>\n<tr><td>Clavier – lignes</td><td class=\"mono\">GPIO 18, 19, 14, 27</td></tr>\n<tr><td>Clavier – colonnes</td><td class=\"mono\">GPIO 26, 25, 33, 32</td></tr>\n<tr><td>LCD I²C</td><td class=\"mono\">SDA: 21 · SCL: 22</td></tr>\n<tr><td>Servomoteur</td><td class=\"mono\">Signal: GPIO 12</td></tr>\n<tr><td>Buzzer</td><td class=\"mono\">Signal: GPIO 23</td></tr>\n</tbody>\n</table>\n<div class=\"alert\">\n<i class=\"icon-sm\" data-lucide=\"alert-triangle\"></i>\n<div>\n<strong>Attention GPIO 12</strong> — broche de strapping. Si le servo est branché au démarrage ou pendant le flash, l'ESP32 peut refuser de démarrer.\n            </div>\n</div>\n",
+      "en": "\n<h2 class=\"yellow\">ESP32 wiring</h2>\n<table class=\"table\">\n<thead>\n<tr>\n<th>Component</th>\n<th>Pins</th>\n</tr>\n</thead>\n<tbody>\n<tr><td>Keypad – rows</td><td class=\"mono\">GPIO 18, 19, 14, 27</td></tr>\n<tr><td>Keypad – columns</td><td class=\"mono\">GPIO 26, 25, 33, 32</td></tr>\n<tr><td>LCD I²C</td><td class=\"mono\">SDA: 21 · SCL: 22</td></tr>\n<tr><td>Servomoteur</td><td class=\"mono\">Signal: GPIO 12</td></tr>\n<tr><td>Buzzer</td><td class=\"mono\">Signal: GPIO 23</td></tr>\n</tbody>\n</table>\n<div class=\"alert\">\n<i class=\"icon-sm\" data-lucide=\"alert-triangle\"></i>\n<div>\n<strong>GPIO 12 warning</strong> — a strapping pin. If the servo is connected during startup or flashing, the ESP32 may fail to boot.\n            </div>\n</div>\n"
+    },
+    {
+      "caption": "Architecture logicielle",
+      "fr": "\n<h2 class=\"yellow\">Architecture logicielle</h2>\n<div class=\"cards\">\n<div class=\"card\">\n<div class=\"tag\">Couche application</div>\n<div class=\"mono\">src/main.cpp</div>\n<p>Lecture clavier, saisie, affichage LCD, buzzer, vérification du code</p>\n</div>\n<div class=\"card\">\n<div class=\"tag\">Couche actionneur</div>\n<div class=\"mono\">src/servo.cpp</div>\n<p>unlockDoor(), lockDoor(), turn_left(), turn_right(), stop()</p>\n</div>\n<div class=\"card\">\n<div class=\"tag yellow-tag\">Technologies</div>\n<ul class=\"list\">\n<li>C++ + framework Arduino</li>\n<li>PlatformIO (carte esp32dev)</li>\n<li>Keypad · ESP32Servo · LiquidCrystal_I2C</li>\n</ul>\n</div>\n</div>\n",
+      "en": "\n<h2 class=\"yellow\">Software architecture</h2>\n<div class=\"cards\">\n<div class=\"card\">\n<div class=\"tag\">Application layer</div>\n<div class=\"mono\">src/main.cpp</div>\n<p>Keypad scanning, input handling, LCD display, buzzer, and code verification</p>\n</div>\n<div class=\"card\">\n<div class=\"tag\">Actuator layer</div>\n<div class=\"mono\">src/servo.cpp</div>\n<p>unlockDoor(), lockDoor(), turn_left(), turn_right(), stop()</p>\n</div>\n<div class=\"card\">\n<div class=\"tag yellow-tag\">Technologies</div>\n<ul class=\"list\">\n<li>C++ + Arduino framework</li>\n<li>PlatformIO (carte esp32dev)</li>\n<li>Keypad · ESP32Servo · LiquidCrystal_I2C</li>\n</ul>\n</div>\n</div>\n"
+    },
+    {
+      "caption": "Le servomoteur : verrouillage",
+      "fr": "\n<h2 class=\"yellow\">Le servomoteur</h2>\n<p class=\"muted center\">Comment il verrouille</p>\n<div class=\"cards\">\n<div class=\"card row\">\n<div class=\"pulse\">1200 µs</div>\n<div>\n<strong>Verrouillage</strong>\n<span>Rotation 300 ms</span>\n</div>\n</div>\n<div class=\"card row\">\n<div class=\"pulse\">1500 µs</div>\n<div>\n<strong>Arrêt</strong>\n<span>Point neutre</span>\n</div>\n</div>\n<div class=\"card row\">\n<div class=\"pulse\">1800 µs</div>\n<div>\n<strong>Déverrouillage</strong>\n<span>Rotation 300 ms</span>\n</div>\n</div>\n</div>\n<ul class=\"list muted\">\n<li>Servo à rotation continue : durée = mouvement</li>\n<li>writeMicroseconds() règle sens et vitesse</li>\n<li>Verrouillage temporel (pas de capteur de position)</li>\n</ul>\n",
+      "en": "\n<h2 class=\"yellow\">Le servomoteur</h2>\n<p class=\"muted center\">How it locks</p>\n<div class=\"cards\">\n<div class=\"card row\">\n<div class=\"pulse\">1200 µs</div>\n<div>\n<strong>Locking</strong>\n<span>300 ms rotation</span>\n</div>\n</div>\n<div class=\"card row\">\n<div class=\"pulse\">1500 µs</div>\n<div>\n<strong>Stop</strong>\n<span>Neutral position</span>\n</div>\n</div>\n<div class=\"card row\">\n<div class=\"pulse\">1800 µs</div>\n<div>\n<strong>Unlocking</strong>\n<span>300 ms rotation</span>\n</div>\n</div>\n</div>\n<ul class=\"list muted\">\n<li>Continuous-rotation servo: duration controls movement</li>\n<li>writeMicroseconds() controls direction and speed</li>\n<li>Timed locking (no position sensor)</li>\n</ul>\n"
+    },
+    {
+      "caption": "Retour fait à l'utilisateur",
+      "fr": "\n<h2 class=\"yellow\">Retour utilisateur</h2>\n<div class=\"cards\">\n<div class=\"card\">\n<div class=\"card-head\">\n<i class=\"icon\" data-lucide=\"monitor\"></i>\n<strong>Écran LCD</strong>\n</div>\n<ul class=\"list\">\n<li>Invite à saisir le code</li>\n<li>Caractères saisis en direct</li>\n<li>Résultat : correct ou incorrect</li>\n</ul>\n</div>\n<div class=\"card\">\n<div class=\"card-head\">\n<i class=\"icon\" data-lucide=\"volume-2\"></i>\n<strong>Buzzer</strong>\n</div>\n<ul class=\"list\">\n<li>1 bip court → touche pressée</li>\n<li>1 bip long → code correct</li>\n<li>3 bips courts → code incorrect</li>\n<li>2 bips → saisie effacée</li>\n</ul>\n</div>\n</div>\n<p class=\"muted center small\">Tous les événements aussi sur le port série (115200 bauds)</p>\n",
+      "en": "\n<h2 class=\"yellow\">User feedback</h2>\n<div class=\"cards\">\n<div class=\"card\">\n<div class=\"card-head\">\n<i class=\"icon\" data-lucide=\"monitor\"></i>\n<strong>LCD display</strong>\n</div>\n<ul class=\"list\">\n<li>Prompts the user to enter the code</li>\n<li>Displays entered characters in real time</li>\n<li>Result: correct or incorrect</li>\n</ul>\n</div>\n<div class=\"card\">\n<div class=\"card-head\">\n<i class=\"icon\" data-lucide=\"volume-2\"></i>\n<strong>Buzzer</strong>\n</div>\n<ul class=\"list\">\n<li>1 short beep → key pressed</li>\n<li>1 long beep → correct code</li>\n<li>3 short beeps → incorrect code</li>\n<li>2 beeps → entry cleared</li>\n</ul>\n</div>\n</div>\n<p class=\"muted center small\">All events are also sent to the serial port (115200 baud)</p>\n"
+    },
+    {
+      "caption": "Les limites du prototype",
+      "fr": "\n<h2 class=\"yellow\">Les limites</h2>\n<p class=\"muted center small\">Prototype pédagogique, pas un verrou certifié</p>\n<div class=\"cards\">\n<div class=\"card danger\">\n<div class=\"card-head\">\n<i class=\"icon danger-icon\" data-lucide=\"alert-triangle\"></i>\n<strong>Sécurité</strong>\n</div>\n<p>Code en dur, essais illimités, saisie affichée en clair</p>\n</div>\n<div class=\"card danger\">\n<div class=\"card-head\">\n<i class=\"icon danger-icon\" data-lucide=\"alert-triangle\"></i>\n<strong>Fiabilité</strong>\n</div>\n<p>Pas de capteur : état verrouillé supposé au démarrage</p>\n</div>\n<div class=\"card danger\">\n<div class=\"card-head\">\n<i class=\"icon danger-icon\" data-lucide=\"alert-triangle\"></i>\n<strong>Programme</strong>\n</div>\n<p>Utilise delay() : des touches peuvent être manquées</p>\n</div>\n<div class=\"card danger\">\n<div class=\"card-head\">\n<i class=\"icon danger-icon\" data-lucide=\"alert-triangle\"></i>\n<strong>Blynk</strong>\n</div>\n<p>Bibliothèque déclarée mais pas encore utilisée</p>\n</div>\n</div>\n",
+      "en": "\n<h2 class=\"yellow\">Limitations</h2>\n<p class=\"muted center small\">Educational prototype, not a certified lock</p>\n<div class=\"cards\">\n<div class=\"card danger\">\n<div class=\"card-head\">\n<i class=\"icon danger-icon\" data-lucide=\"alert-triangle\"></i>\n<strong>Security</strong>\n</div>\n<p>Hardcoded code, unlimited attempts, input displayed in plain text</p>\n</div>\n<div class=\"card danger\">\n<div class=\"card-head\">\n<i class=\"icon danger-icon\" data-lucide=\"alert-triangle\"></i>\n<strong>Reliability</strong>\n</div>\n<p>No sensor: locked state is assumed at startup</p>\n</div>\n<div class=\"card danger\">\n<div class=\"card-head\">\n<i class=\"icon danger-icon\" data-lucide=\"alert-triangle\"></i>\n<strong>Program</strong>\n</div>\n<p>Uses delay(): key presses may be missed</p>\n</div>\n<div class=\"card danger\">\n<div class=\"card-head\">\n<i class=\"icon danger-icon\" data-lucide=\"alert-triangle\"></i>\n<strong>Blynk</strong>\n</div>\n<p>Library declared but not yet used</p>\n</div>\n</div>\n"
+    },
+    {
+      "caption": "Les améliorations prévues",
+      "fr": "\n<h2 class=\"yellow\">Améliorations prévues</h2>\n<div class=\"cards\">\n<div class=\"card success\">\n<div class=\"card-head\">\n<div class=\"check\"><i class=\"icon-xs\" data-lucide=\"check\"></i></div>\n<strong>Sécurité</strong>\n</div>\n<p>Code en NVS, saisie masquée, temporisation après échecs</p>\n</div>\n<div class=\"card success\">\n<div class=\"card-head\">\n<div class=\"check\"><i class=\"icon-xs\" data-lucide=\"check\"></i></div>\n<strong>Fiabilité</strong>\n</div>\n<p>Capteur de fin de course ou contacteur à lame souple</p>\n</div>\n<div class=\"card success\">\n<div class=\"card-head\">\n<div class=\"check\"><i class=\"icon-xs\" data-lucide=\"check\"></i></div>\n<strong>Programme</strong>\n</div>\n<p>millis() à la place de delay()</p>\n</div>\n<div class=\"card success\">\n<div class=\"card-head\">\n<div class=\"check\"><i class=\"icon-xs\" data-lucide=\"check\"></i></div>\n<strong>Connectivité</strong>\n</div>\n<p>Contrôle à distance via Blynk, journal horodaté</p>\n</div>\n</div>\n",
+      "en": "\n<h2 class=\"yellow\">Planned improvements</h2>\n<div class=\"cards\">\n<div class=\"card success\">\n<div class=\"card-head\">\n<div class=\"check\"><i class=\"icon-xs\" data-lucide=\"check\"></i></div>\n<strong>Security</strong>\n</div>\n<p>Store code in NVS, mask input, add lockout after failed attempts</p>\n</div>\n<div class=\"card success\">\n<div class=\"card-head\">\n<div class=\"check\"><i class=\"icon-xs\" data-lucide=\"check\"></i></div>\n<strong>Reliability</strong>\n</div>\n<p>Limit switch or reed switch</p>\n</div>\n<div class=\"card success\">\n<div class=\"card-head\">\n<div class=\"check\"><i class=\"icon-xs\" data-lucide=\"check\"></i></div>\n<strong>Program</strong>\n</div>\n<p>Use millis() instead of delay()</p>\n</div>\n<div class=\"card success\">\n<div class=\"card-head\">\n<div class=\"check\"><i class=\"icon-xs\" data-lucide=\"check\"></i></div>\n<strong>Connectivity</strong>\n</div>\n<p>Remote control via Blynk, timestamped event log</p>\n</div>\n</div>\n"
+    },
+    {
+      "caption": "Merci – Questions ?",
+      "fr": "\n<img alt=\"ENI\" class=\"logo-md\" src=\"assets/eni.png\"/>\n<h1 class=\"title-thanks\">Merci de votre attention</h1>\n<ul class=\"thanks-list\">\n<li>Un code saisi, un servo, une porte qui s'ouvre seule</li>\n<li>Prototype fonctionnel ESP32, extensible, licence MIT</li>\n<li>Base solide pour une vraie serrure connectée</li>\n</ul>\n<div class=\"questions\">Questions ?</div>\n<p class=\"muted small\">Code source disponible sur GitHub · Licence MIT</p>\n",
+      "en": "\n<img alt=\"ENI\" class=\"logo-md\" src=\"assets/eni.png\"/>\n<h1 class=\"title-thanks\">Thank you for your attention</h1>\n<ul class=\"thanks-list\">\n<li>One code, one servo, one door that opens automatically</li>\n<li>Working ESP32 prototype, extensible, MIT licensed</li>\n<li>A solid foundation for a real smart lock</li>\n</ul>\n<div class=\"questions\">Questions?</div>\n<p class=\"muted small\">Source code available on GitHub · MIT License</p>\n"
+    },
+    {
+      "caption": "GatePass on GitHub",
+      "fr": "\n<div class=\"github-kicker\">GATEPASS · OPEN SOURCE</div>\n<h1 class=\"title-thanks github-thanks\" data-i18n-thanks=\"\">Thanks for watching!</h1>\n<p class=\"github-message\" data-i18n-thanks-line=\"\">Built with curiosity, teamwork, and a passion for technology.</p>\n<a class=\"github-qr-link\" href=\"https://github.com/hatixntsoa/gatepass\" rel=\"noopener\" target=\"_blank\">\n<img alt=\"QR code linking to the GatePass GitHub repository\" class=\"github-qr\" src=\"assets/github-qr.png\"/>\n</a>\n<a class=\"github-url\" href=\"https://github.com/hatixntsoa/gatepass\" rel=\"noopener\" target=\"_blank\">github.com/hatixntsoa/gatepass</a>\n<p class=\"github-footer\">Groupe 11 · M1 OCC ENI 2026</p>\n",
+      "en": "\n<div class=\"github-kicker\">GATEPASS · OPEN SOURCE</div>\n<h1 class=\"title-thanks github-thanks\" data-i18n-thanks=\"\">Thanks for watching!</h1>\n<p class=\"github-message\" data-i18n-thanks-line=\"\">Built with curiosity, teamwork, and a passion for technology.</p>\n<a class=\"github-qr-link\" href=\"https://github.com/hatixntsoa/gatepass\" rel=\"noopener\" target=\"_blank\">\n<img alt=\"QR code linking to the GatePass GitHub repository\" class=\"github-qr\" src=\"assets/github-qr.png\"/>\n</a>\n<a class=\"github-url\" href=\"https://github.com/hatixntsoa/gatepass\" rel=\"noopener\" target=\"_blank\">github.com/hatixntsoa/gatepass</a>\n<p class=\"github-footer\">Groupe 11 · M1 OCC ENI 2026</p>\n"
+    }
+  ]
+}

@@ -1,429 +1,89 @@
 <!DOCTYPE html>
-<html lang="fr">
+
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>GatePass – ENI 2026 · Groupe11</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" type="image/png" href="assets/eni.png" />
-  <!-- Lucide icons via CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>GatePass – ENI 2026 · Groupe11</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="assets/eni.png" rel="icon" type="image/png"/>
+<!-- Lucide icons via CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <div class="app">
-    <main class="reels" id="reels">
-      <!-- Progress bars -->
-      <div class="progress" id="progress"></div>
-
-      <!-- ========== SLIDE 1: Title ========== -->
-      <section class="slide" data-caption="GatePass – Présentation">
-        <div class="slide-content title-slide">
-          <img src="assets/eni.png" alt="ENI" class="logo-lg" />
-          <h1 class="title-main">GatePass</h1>
-          <p class="subtitle">Une serrure intelligente à code, pilotée par un ESP32 et un servomoteur</p>
-          <div class="badge">Projet Microcontrôleurs · M1 OCC ENI 2026</div>
-          <div class="authors">
-            <p>HALIOTIS NTSOA Randriambololona · 2936</p>
-            <p>FETISON Mioralalaina Câline · 4610</p>
-            <p>RAFIDIMANANTSOA Rova Nandrianina · 4634</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 2: Plan ========== -->
-      <section class="slide" data-caption="Plan de la présentation">
-        <div class="slide-content">
-          <h2 class="yellow">Notre présentation</h2>
-          <p class="muted center">en trois parties</p>
-          <div class="cards">
-            <div class="card row">
-              <div class="num">1</div>
-              <div>
-                <h3>Le projet</h3>
-                <p>Objectif, principe de fonctionnement</p>
-                <span class="speaker">[Câline]</span>
-              </div>
-            </div>
-            <div class="card row">
-              <div class="num">2</div>
-              <div>
-                <h3>La technique</h3>
-                <p>Matériel, câblage, logiciel, servomoteur</p>
-                <span class="speaker">[Ntsoa]</span>
-              </div>
-            </div>
-            <div class="card row">
-              <div class="num">3</div>
-              <div>
-                <h3>Bilan</h3>
-                <p>Retour utilisateur, limites, perspectives</p>
-                <span class="speaker">[Nandrianina]</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 3: Numbers ========== -->
-      <section class="slide" data-caption="Le projet en quelques chiffres">
-        <div class="slide-content">
-          <h2 class="yellow">Le projet en chiffres</h2>
-          <div class="cards">
-            <div class="card center">
-              <div class="big-num">4</div>
-              <div class="label">chiffres pour le code</div>
-              <div class="sub">Mot de passe par défaut : 1111</div>
-            </div>
-            <div class="card center">
-              <div class="big-num">3 s</div>
-              <div class="label">porte déverrouillée</div>
-              <div class="sub">Puis verrouillage automatique</div>
-            </div>
-            <div class="card center">
-              <div class="big-num">1</div>
-              <div class="label">servomoteur</div>
-              <div class="sub">Il retire et remet le pêne</div>
-            </div>
-          </div>
-          <p class="note">Objectif : saisir un code sur un clavier, et si le code est bon, la porte s'ouvre toute seule.</p>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 4: How it works ========== -->
-      <section class="slide" data-caption="Comment ça marche – 5 étapes">
-        <div class="slide-content">
-          <h2 class="yellow">Comment ça marche</h2>
-          <div class="steps">
-            <div class="step">
-              <div class="num sm">1</div>
-              <div>
-                <strong>Saisie</strong>
-                <span>L'utilisateur tape 4 chiffres</span>
-              </div>
-            </div>
-            <div class="step">
-              <div class="num sm">2</div>
-              <div>
-                <strong>Vérification</strong>
-                <span>L'ESP32 compare au code</span>
-              </div>
-            </div>
-            <div class="step">
-              <div class="num sm">3</div>
-              <div>
-                <strong>Déverrouillage</strong>
-                <span>Le servo retire le pêne</span>
-              </div>
-            </div>
-            <div class="step">
-              <div class="num sm">4</div>
-              <div>
-                <strong>Porte ouverte</strong>
-                <span>Pendant 3 secondes</span>
-              </div>
-            </div>
-            <div class="step">
-              <div class="num sm">5</div>
-              <div>
-                <strong>Verrouillage</strong>
-                <span>Le servo remet le pêne</span>
-              </div>
-            </div>
-          </div>
-          <p class="highlight">Touche * : efface la saisie en cours (double bip)</p>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 5: Hardware ========== -->
-      <section class="slide" data-caption="Le matériel utilisé">
-        <div class="slide-content">
-          <h2 class="yellow">Le matériel utilisé</h2>
-          <div class="grid-2">
-            <div class="card center compact">
-              <i data-lucide="cpu" class="icon"></i>
-              <strong>ESP32 DevKit</strong>
-              <span>Le cerveau (ESP-WROOM-32)</span>
-            </div>
-            <div class="card center compact">
-              <i data-lucide="keyboard" class="icon"></i>
-              <strong>Clavier 4×4</strong>
-              <span>Membrane, 16 touches</span>
-            </div>
-            <div class="card center compact">
-              <i data-lucide="monitor" class="icon"></i>
-              <strong>LCD 16×2</strong>
-              <span>Module I²C, adresse 0x27</span>
-            </div>
-            <div class="card center compact">
-              <i data-lucide="rotate-cw" class="icon"></i>
-              <strong>Servomoteur</strong>
-              <span>Rotation continue, 5 V (SG90)</span>
-            </div>
-            <div class="card center compact">
-              <i data-lucide="volume-2" class="icon"></i>
-              <strong>Buzzer actif</strong>
-              <span>Retour sonore HIGH/LOW</span>
-            </div>
-            <div class="card center compact">
-              <i data-lucide="zap" class="icon"></i>
-              <strong>Alimentation</strong>
-              <span>USB 5 V ou externe 5 V</span>
-            </div>
-          </div>
-          <p class="muted center small">Aucun capteur. Seul périphérique d'entrée : le clavier.</p>
-        </div>
-      </section>
-
-
-      <!-- ========== SLIDE: ESP32 photo ========== -->
-      <section class="slide" data-caption="ESP32 DevKit – pinout">
-        <div class="slide-content photo-slide">
-          <h2 class="yellow">ESP32 DevKit</h2>
-          <p class="muted center small">Pinout de référence</p>
-          <div class="photo-frame">
-            <img src="assets/esp32.png" alt="ESP32 DevKit pinout" class="photo" />
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE: Keypad photo ========== -->
-      <section class="slide" data-caption="Clavier 4×4 – câblage">
-        <div class="slide-content photo-slide">
-          <h2 class="yellow">Clavier 4×4</h2>
-          <p class="muted center small">Membrane · 8 broches (lignes + colonnes)</p>
-          <div class="photo-frame">
-            <img src="assets/keypad.png" alt="Clavier 4x4" class="photo" />
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE: Servo photo ========== -->
-      <section class="slide" data-caption="Servomoteur – branchement">
-        <div class="slide-content photo-slide">
-          <h2 class="yellow">Servomoteur</h2>
-          <p class="muted center small">Rotation continue · Rouge +5V · Marron GND · Orange signal</p>
-          <div class="photo-frame">
-            <img src="assets/servo.png" alt="Servomoteur" class="photo" />
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 6: Wiring ========== -->
-      <section class="slide" data-caption="Le câblage de l'ESP32">
-        <div class="slide-content">
-          <h2 class="yellow">Le câblage ESP32</h2>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Composant</th>
-                <th>Broches</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Clavier – lignes</td><td class="mono">GPIO 18, 19, 14, 27</td></tr>
-              <tr><td>Clavier – colonnes</td><td class="mono">GPIO 26, 25, 33, 32</td></tr>
-              <tr><td>LCD I²C</td><td class="mono">SDA: 21 · SCL: 22</td></tr>
-              <tr><td>Servomoteur</td><td class="mono">Signal: GPIO 12</td></tr>
-              <tr><td>Buzzer</td><td class="mono">Signal: GPIO 23</td></tr>
-            </tbody>
-          </table>
-          <div class="alert">
-            <i data-lucide="alert-triangle" class="icon-sm"></i>
-            <div>
-              <strong>Attention GPIO 12</strong> — broche de strapping. Si le servo est branché au démarrage ou pendant le flash, l'ESP32 peut refuser de démarrer.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 7: Software ========== -->
-      <section class="slide" data-caption="Architecture logicielle">
-        <div class="slide-content">
-          <h2 class="yellow">Architecture logicielle</h2>
-          <div class="cards">
-            <div class="card">
-              <div class="tag">Couche application</div>
-              <div class="mono">src/main.cpp</div>
-              <p>Lecture clavier, saisie, affichage LCD, buzzer, vérification du code</p>
-            </div>
-            <div class="card">
-              <div class="tag">Couche actionneur</div>
-              <div class="mono">src/servo.cpp</div>
-              <p>unlockDoor(), lockDoor(), turn_left(), turn_right(), stop()</p>
-            </div>
-            <div class="card">
-              <div class="tag yellow-tag">Technologies</div>
-              <ul class="list">
-                <li>C++ + framework Arduino</li>
-                <li>PlatformIO (carte esp32dev)</li>
-                <li>Keypad · ESP32Servo · LiquidCrystal_I2C</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 8: Servo ========== -->
-      <section class="slide" data-caption="Le servomoteur : verrouillage">
-        <div class="slide-content">
-          <h2 class="yellow">Le servomoteur</h2>
-          <p class="muted center">Comment il verrouille</p>
-          <div class="cards">
-            <div class="card row">
-              <div class="pulse">1200 µs</div>
-              <div>
-                <strong>Verrouillage</strong>
-                <span>Rotation 300 ms</span>
-              </div>
-            </div>
-            <div class="card row">
-              <div class="pulse">1500 µs</div>
-              <div>
-                <strong>Arrêt</strong>
-                <span>Point neutre</span>
-              </div>
-            </div>
-            <div class="card row">
-              <div class="pulse">1800 µs</div>
-              <div>
-                <strong>Déverrouillage</strong>
-                <span>Rotation 300 ms</span>
-              </div>
-            </div>
-          </div>
-          <ul class="list muted">
-            <li>Servo à rotation continue : durée = mouvement</li>
-            <li>writeMicroseconds() règle sens et vitesse</li>
-            <li>Verrouillage temporel (pas de capteur de position)</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 9: Feedback ========== -->
-      <section class="slide" data-caption="Retour fait à l'utilisateur">
-        <div class="slide-content">
-          <h2 class="yellow">Retour utilisateur</h2>
-          <div class="cards">
-            <div class="card">
-              <div class="card-head">
-                <i data-lucide="monitor" class="icon"></i>
-                <strong>Écran LCD</strong>
-              </div>
-              <ul class="list">
-                <li>Invite à saisir le code</li>
-                <li>Caractères saisis en direct</li>
-                <li>Résultat : correct ou incorrect</li>
-              </ul>
-            </div>
-            <div class="card">
-              <div class="card-head">
-                <i data-lucide="volume-2" class="icon"></i>
-                <strong>Buzzer</strong>
-              </div>
-              <ul class="list">
-                <li>1 bip court → touche pressée</li>
-                <li>1 bip long → code correct</li>
-                <li>3 bips courts → code incorrect</li>
-                <li>2 bips → saisie effacée</li>
-              </ul>
-            </div>
-          </div>
-          <p class="muted center small">Tous les événements aussi sur le port série (115200 bauds)</p>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 10: Limits ========== -->
-      <section class="slide" data-caption="Les limites du prototype">
-        <div class="slide-content">
-          <h2 class="yellow">Les limites</h2>
-          <p class="muted center small">Prototype pédagogique, pas un verrou certifié</p>
-          <div class="cards">
-            <div class="card danger">
-              <div class="card-head">
-                <i data-lucide="alert-triangle" class="icon danger-icon"></i>
-                <strong>Sécurité</strong>
-              </div>
-              <p>Code en dur, essais illimités, saisie affichée en clair</p>
-            </div>
-            <div class="card danger">
-              <div class="card-head">
-                <i data-lucide="alert-triangle" class="icon danger-icon"></i>
-                <strong>Fiabilité</strong>
-              </div>
-              <p>Pas de capteur : état verrouillé supposé au démarrage</p>
-            </div>
-            <div class="card danger">
-              <div class="card-head">
-                <i data-lucide="alert-triangle" class="icon danger-icon"></i>
-                <strong>Programme</strong>
-              </div>
-              <p>Utilise delay() : des touches peuvent être manquées</p>
-            </div>
-            <div class="card danger">
-              <div class="card-head">
-                <i data-lucide="alert-triangle" class="icon danger-icon"></i>
-                <strong>Blynk</strong>
-              </div>
-              <p>Bibliothèque déclarée mais pas encore utilisée</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 11: Improvements ========== -->
-      <section class="slide" data-caption="Les améliorations prévues">
-        <div class="slide-content">
-          <h2 class="yellow">Améliorations prévues</h2>
-          <div class="cards">
-            <div class="card success">
-              <div class="card-head">
-                <div class="check"><i data-lucide="check" class="icon-xs"></i></div>
-                <strong>Sécurité</strong>
-              </div>
-              <p>Code en NVS, saisie masquée, temporisation après échecs</p>
-            </div>
-            <div class="card success">
-              <div class="card-head">
-                <div class="check"><i data-lucide="check" class="icon-xs"></i></div>
-                <strong>Fiabilité</strong>
-              </div>
-              <p>Capteur de fin de course ou contacteur à lame souple</p>
-            </div>
-            <div class="card success">
-              <div class="card-head">
-                <div class="check"><i data-lucide="check" class="icon-xs"></i></div>
-                <strong>Programme</strong>
-              </div>
-              <p>millis() à la place de delay()</p>
-            </div>
-            <div class="card success">
-              <div class="card-head">
-                <div class="check"><i data-lucide="check" class="icon-xs"></i></div>
-                <strong>Connectivité</strong>
-              </div>
-              <p>Contrôle à distance via Blynk, journal horodaté</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== SLIDE 12: Thanks ========== -->
-      <section class="slide" data-caption="Merci – Questions ?">
-        <div class="slide-content title-slide">
-          <img src="assets/eni.png" alt="ENI" class="logo-md" />
-          <h1 class="title-thanks">Merci de votre attention</h1>
-          <ul class="thanks-list">
-            <li>Un code saisi, un servo, une porte qui s'ouvre seule</li>
-            <li>Prototype fonctionnel ESP32, extensible, licence MIT</li>
-            <li>Base solide pour une vraie serrure connectée</li>
-          </ul>
-          <div class="questions">Questions ?</div>
-          <p class="muted small">Code source disponible sur GitHub · Licence MIT</p>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script src="js/app.js"></script>
+<div class="app">
+<main class="reels" id="reels">
+<!-- Progress bars -->
+<div class="progress" id="progress"></div>
+<!-- ========== SLIDE 1: Title ========== -->
+<section class="slide" data-caption="GatePass – Présentation">
+<div class="slide-content title-slide"></div>
+</section>
+<!-- ========== SLIDE 2: Plan ========== -->
+<section class="slide" data-caption="Plan de la présentation">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 3: Numbers ========== -->
+<section class="slide" data-caption="Le projet en quelques chiffres">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 4: How it works ========== -->
+<section class="slide" data-caption="Comment ça marche – 5 étapes">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 5: Hardware ========== -->
+<section class="slide" data-caption="Le matériel utilisé">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE: ESP32 photo ========== -->
+<section class="slide" data-caption="ESP32 DevKit – pinout">
+<div class="slide-content photo-slide"></div>
+</section>
+<!-- ========== SLIDE: Keypad photo ========== -->
+<section class="slide" data-caption="Clavier 4×4 – câblage">
+<div class="slide-content photo-slide"></div>
+</section>
+<!-- ========== SLIDE: Servo photo ========== -->
+<section class="slide" data-caption="Servomoteur – branchement">
+<div class="slide-content photo-slide"></div>
+</section>
+<!-- ========== SLIDE 6: Wiring ========== -->
+<section class="slide" data-caption="Le câblage de l'ESP32">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 7: Software ========== -->
+<section class="slide" data-caption="Architecture logicielle">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 8: Servo ========== -->
+<section class="slide" data-caption="Le servomoteur : verrouillage">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 9: Feedback ========== -->
+<section class="slide" data-caption="Retour fait à l'utilisateur">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 10: Limits ========== -->
+<section class="slide" data-caption="Les limites du prototype">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 11: Improvements ========== -->
+<section class="slide" data-caption="Les améliorations prévues">
+<div class="slide-content"></div>
+</section>
+<!-- ========== SLIDE 12: Thanks ========== -->
+<section class="slide" data-caption="Merci – Questions ?">
+<div class="slide-content title-slide"></div>
+</section>
+<!-- ========== FINAL SLIDE: GitHub ========== -->
+<section class="slide github-slide" data-caption="GatePass on GitHub">
+<div class="slide-content title-slide github-content"></div>
+</section>
+</main>
+</div>
+<script src="js/storage.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/comments.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

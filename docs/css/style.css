@@ -19,11 +19,16 @@
 
 html, body {
   height: 100%;
+  height: 100dvh; /* dynamic viewport – accounts for mobile browser chrome */
+  height: var(--app-height, 100dvh); /* JS visualViewport fallback */
   overflow: hidden;
   background: #000;
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* Prevent overscroll / rubber-banding that can expose chrome */
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ===== App shell (phone-like frame) ===== */
@@ -31,9 +36,14 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  height: 100dvh;
+  height: var(--app-height, 100dvh);
+  width: 100%;
+  width: 100dvw;
   background: #000;
+  /* Safe areas for notched devices */
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
 }
 
 .verified {
@@ -59,6 +69,8 @@ html, body {
   scrollbar-width: none;
   -ms-overflow-style: none;
   background: #000;
+  /* Contain the snap container */
+  overscroll-behavior-y: contain;
 }
 
 .reels::-webkit-scrollbar {
@@ -667,36 +679,62 @@ html, body {
   }
 }
 
-/* ===== Mobile: browser chrome at the bottom ===== */
-@supports (padding: env(safe-area-inset-bottom)) {
-  .footer {
-    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+/* ===== Mobile / portrait phone: full-screen + clear of browser chrome ===== */
+/* Detect tall narrow devices (smartphones) and force full viewport fill */
+@media (max-width: 600px), (orientation: portrait) and (max-aspect-ratio: 3/4) {
+  .app {
+    /* Remove any centering offsets so the reels truly fill the screen */
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
   }
-  .actions {
-    bottom: calc(32px + env(safe-area-inset-bottom));
-  }
-}
 
-@media (max-width: 600px) {
-  /* Push content up so the overlay is never under the browser bar */
+  .reels {
+    max-width: none;
+    aspect-ratio: unset;          /* drop the 4:5 phone frame */
+    width: 100%;
+    height: 100%;
+    height: 100dvh;               /* use dynamic viewport height */
+    height: var(--app-height, 100dvh);
+  }
+
+  /* Room above the browser's bottom chrome – tighter so overlay sits lower */
   .slide-content {
-    padding-bottom: 220px;
+    padding-bottom: 180px;
   }
 
   .footer {
-    padding-bottom: 72px;   /* room for URL bar / tab bar */
+    /* Base + safe-area + modest clearance for browser bottom UI */
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px) + 28px) 16px;
   }
 
   .actions {
-    bottom: 80px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px) + 28px);
   }
 
   .gradient {
-    height: 320px;          /* taller fade so text stays readable */
+    height: 280px;
+  }
+
+  .photo {
+    max-height: 42dvh;
   }
 }
 
-/* When actually in fullscreen, pull everything back down */
+/* Fallback for older browsers that only understand the classic safe-area rule */
+@supports (padding: env(safe-area-inset-bottom)) {
+  @media (max-width: 600px), (orientation: portrait) and (max-aspect-ratio: 3/4) {
+    .footer {
+      padding-bottom: calc(12px + env(safe-area-inset-bottom) + 28px);
+    }
+    .actions {
+      bottom: calc(20px + env(safe-area-inset-bottom) + 28px);
+    }
+  }
+}
+
+/* When the page is actually in Fullscreen API mode, pull the overlay back down
+   because the browser chrome is gone */
 :fullscreen .footer,
 :-webkit-full-screen .footer {
   padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
@@ -710,6 +748,14 @@ html, body {
 :fullscreen .slide-content,
 :-webkit-full-screen .slide-content {
   padding-bottom: 160px;
+}
+
+:fullscreen .reels,
+:-webkit-full-screen .reels {
+  max-width: none;
+  aspect-ratio: unset;
+  height: 100%;
+  width: 100%;
 }
 
 /* ===== Photo / hardware image slides ===== */
@@ -735,12 +781,389 @@ html, body {
   width: 100%;
   height: auto;
   max-height: 55vh;
+  max-height: 55dvh;
   object-fit: contain;
   display: block;
 }
 
 @media (max-width: 600px) {
   .photo {
-    max-height: 48vh;
+    max-height: 42dvh;
   }
+}
+
+/* ===== Interactive action buttons ===== */
+.action-btn {
+  transition: transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.action-btn:active {
+  transform: scale(0.88);
+}
+.action-btn.liked svg {
+  color: #fe2c55;
+  fill: #fe2c55;
+  animation: heart-pop 0.35s ease;
+}
+.action-btn.bookmarked svg {
+  color: #fde047;
+  fill: #fde047;
+  animation: heart-pop 0.3s ease;
+}
+.action-btn.shared {
+  animation: heart-pop 0.3s ease;
+}
+@keyframes heart-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.35); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* Floating heart particles on like */
+.heart-float {
+  position: absolute;
+  pointer-events: none;
+  color: #fe2c55;
+  font-size: 28px;
+  animation: float-up 0.8s ease-out forwards;
+  z-index: 60;
+}
+@keyframes float-up {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-80px) scale(1.4); }
+}
+
+/* ===== Comments bottom sheet ===== */
+.comments-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+  visibility: hidden;
+}
+.comments-sheet.open {
+  pointer-events: auto;
+  visibility: visible;
+}
+.comments-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.comments-sheet.open .comments-backdrop {
+  opacity: 1;
+}
+.comments-panel {
+  position: relative;
+  background: #161616;
+  border-radius: 16px 16px 0 0;
+  max-height: 72dvh;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.comments-sheet.open .comments-panel {
+  transform: translateY(0);
+}
+.comments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.comments-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+}
+.comments-close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+}
+.comments-close svg {
+  width: 22px;
+  height: 22px;
+}
+.comments-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.comment {
+  display: flex;
+  gap: 10px;
+  padding: 10px 16px;
+}
+.comment-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f97316, #fde047);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.comment-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.comment-body {
+  flex: 1;
+  min-width: 0;
+}
+.comment-user {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.comment-user .verified-sm {
+  display: inline;
+  color: #1d9bf0;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+.comment-user .verified-sm svg {
+  width: 12px;
+  height: 12px;
+  display: inline;
+  vertical-align: -1px;
+}
+.comment-text {
+  font-size: 13px;
+  color: #e2e8f0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.comment-meta {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+.comment-meta button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+}
+.comment-meta button.liked {
+  color: #fe2c55;
+}
+.comment-like-count {
+  margin-left: 2px;
+}
+.comment-replies {
+  margin-top: 8px;
+  margin-left: 8px;
+  border-left: 2px solid rgba(255,255,255,0.1);
+  padding-left: 10px;
+}
+.comment-reply-form {
+  display: none;
+  margin-top: 8px;
+  gap: 8px;
+}
+.comment-reply-form.open {
+  display: flex;
+}
+.comment-reply-form input {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 8px 14px;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+}
+.comment-reply-form button {
+  background: #fe2c55;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 14px;
+  cursor: pointer;
+}
+.comments-composer {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px 14px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.comments-composer input {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  padding: 10px 16px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+.comments-composer button {
+  background: #fe2c55;
+  border: none;
+  border-radius: 24px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 18px;
+  cursor: pointer;
+}
+
+/* ===== More modal ===== */
+.more-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  visibility: hidden;
+}
+.more-modal.open {
+  pointer-events: auto;
+  visibility: visible;
+}
+.more-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.more-modal.open .more-backdrop {
+  opacity: 1;
+}
+.more-card {
+  position: relative;
+  background: #1c1c1e;
+  border-radius: 16px;
+  padding: 28px 32px;
+  text-align: center;
+  max-width: 300px;
+  width: 85%;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.more-modal.open .more-card {
+  transform: scale(1);
+  opacity: 1;
+}
+.more-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #f97316;
+  margin-bottom: 6px;
+}
+.more-card p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 18px;
+}
+.more-close-btn {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 28px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Prevent body scroll when sheet/modal open */
+body.sheet-open {
+  overflow: hidden;
+}
+
+/* ===== Toast notification (share fallback) ===== */
+.gp-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(28, 28, 30, 0.96);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 12px 18px;
+  border-radius: 12px;
+  z-index: 200;
+  max-width: 90vw;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  word-break: break-all;
+}
+.gp-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== Persistent follow state ===== */
+.follow-btn.is-following { background: rgba(255,255,255,.15); border-color: transparent; }
+
+/* ===== GitHub closing slide ===== */
+.github-slide { background: #050505; }
+.github-content { background: radial-gradient(circle at 50% 42%, rgba(254,44,85,.18), transparent 52%), #050505; gap: 12px; }
+.github-kicker { color: #25f4ee; font-size: 11px; font-weight: 900; letter-spacing: .22em; position: relative; z-index: 1; }
+.github-thanks { font-size: clamp(1.65rem, 7vw, 2.5rem); margin: 0; position: relative; z-index: 1; }
+.github-message { color: #e5e7eb; max-width: 300px; font-size: 13px; line-height: 1.45; position: relative; z-index: 1; }
+.github-qr-link { display: block; width: min(64vw, 300px); aspect-ratio: 1; padding: 10px; background: #fff; border-radius: 18px; box-shadow: 8px 8px 0 #fe2c55, -5px -5px 0 #25f4ee; position: relative; z-index: 1; }
+.github-qr { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
+.github-url { color: #fff; font-size: clamp(12px, 3.5vw, 16px); font-weight: 900; letter-spacing: -.02em; text-decoration: none; padding: 9px 14px; border: 1px solid rgba(255,255,255,.45); border-radius: 8px; background: linear-gradient(90deg, rgba(37,244,238,.18), rgba(254,44,85,.18)); position: relative; z-index: 1; }
+.github-footer { color: #94a3b8; font-size: 11px; position: relative; z-index: 1; }
+.language-toggle { display: block; width: 100%; margin: 0 0 10px; border: 1px solid rgba(255,255,255,.18); border-radius: 10px; padding: 10px 16px; background: rgba(255,255,255,.08); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; }
+
+
+/* ===== Desktop GitHub closing slide: fit the reel without inner scrolling ===== */
+@media (min-width: 601px) {
+  .github-content {
+    padding: 14px 20px 22px;
+    gap: clamp(6px, 1.2dvh, 10px);
+    overflow: hidden;
+    justify-content: center;
+  }
+
+  .github-kicker { font-size: 10px; }
+  .github-thanks { font-size: clamp(1.45rem, 4.5dvh, 2.1rem); }
+  .github-message { font-size: clamp(11px, 1.65dvh, 13px); line-height: 1.35; }
+  .github-qr-link { width: min(56vw, 260px, 34dvh); flex: 0 1 auto; }
+  .github-url { font-size: clamp(11px, 1.8dvh, 15px); padding: 7px 12px; }
+  .github-footer { font-size: 10px; }
 }
