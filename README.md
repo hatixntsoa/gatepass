@@ -116,7 +116,7 @@ The keypad ribbon connector has 8 pins: **pins 1-4 are Rows 1-4** and **pins 5-8
 
 | ESP32 pinout | Keypad | Servo |
 |:---:|:---:|:---:|
-| ![ESP32 pinout](docs/esp32.png) | ![Keypad pinout](docs/keypad.png) | ![Servo wiring](docs/servo.png) |
+| ![ESP32 pinout](docs/assets/esp32.png) | ![Keypad pinout](docs/assets/keypad.png) | ![Servo wiring](docs/assets/servo.png) |
 
 > **Power tip:** if the servo makes the ESP32 reset or the LCD flicker, power the servo from an external 5 V source and **connect its ground to the ESP32 ground**.
 
