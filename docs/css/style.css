@@ -666,3 +666,73 @@ html, body {
     font-size: 2.2rem;
   }
 }
+
+/* ===== Mobile safe areas + fullscreen handling ===== */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .footer {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+
+  .actions {
+    bottom: calc(28px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Extra breathing room on mobile so username is never cut off */
+@media (max-width: 600px) {
+  .slide-content {
+    padding-bottom: 180px;
+  }
+
+  .footer {
+    padding-bottom: 24px;
+  }
+
+  .actions {
+    bottom: 36px;
+  }
+}
+
+/* When the browser is in fullscreen */
+:fullscreen .footer,
+:-webkit-full-screen .footer {
+  padding-bottom: 20px;
+}
+
+:fullscreen .actions,
+:-webkit-full-screen .actions {
+  bottom: 28px;
+}
+
+/* ===== Photo / hardware image slides ===== */
+.photo-slide {
+  gap: 10px;
+}
+
+.photo-frame {
+  width: 100%;
+  max-width: 360px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+  max-height: 55vh;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .photo {
+    max-height: 48vh;
+  }
+}

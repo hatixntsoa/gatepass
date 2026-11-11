@@ -129,4 +129,26 @@
 
   // Ensure first progress bar is filled on load
   setActive(0);
+
+  // ===== Mobile fullscreen helper =====
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  }
+
+  function requestFullscreen() {
+    const el = document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  }
+
+  // Enter fullscreen on first user interaction (required by browsers)
+  if (isMobile()) {
+    const enterFs = () => {
+      requestFullscreen();
+      document.removeEventListener("touchstart", enterFs);
+      document.removeEventListener("click", enterFs);
+    };
+    document.addEventListener("touchstart", enterFs, { once: true });
+    document.addEventListener("click", enterFs, { once: true });
+  }
 })();
